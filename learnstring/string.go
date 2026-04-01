@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"unicode/utf8"
 )
 
 // string is a slice of bytes, enclosed in " "
@@ -63,4 +64,24 @@ func main() {
 	str = string(runeSlice)
 	fmt.Println(str)
 
+	// length() return number of bytes, but a char can take more than 1 byte
+
+	word1 := "Señor"
+	fmt.Printf("String: %s\n", word1)
+	fmt.Printf("Length: %d\n", utf8.RuneCountInString(word1))
+	//the RuneCountInString(s string) (n int) function of the utf8 package can be used to find the length of the string.
+	// import "unicode/utf8"
+	fmt.Printf("Number of bytes: %d\n", len(word1))
+
+	fmt.Printf("\n")
+	word2 := "Pets"
+	fmt.Printf("String: %s\n", word2)
+	fmt.Printf("Length: %d\n", utf8.RuneCountInString(word2))
+	fmt.Printf("Number of bytes: %d\n", len(word2))
+
+	// String comparison -> == ; string concatenation -> +
+	// result := fmt.Sprintf("%s %s", string1, string2) -> format specifier input for Sprintf
+
+	// String in Go is immutable; to change content string -> convert to rune then convert back to rune
+	// otherwise reassign is okay -> a := "abc" a:= "abc1"
 }
